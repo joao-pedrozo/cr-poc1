@@ -2,15 +2,17 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 
 import * as S from 'styles/productPage';
 import api from 'services/api';
+import ProductHeader from 'components/Product/Header';
 
 interface ProductPageProps {
     name: string;
+    indication: string;
 }
 
-export default function ProductPage({ name }: ProductPageProps){
+export default function ProductPage({ name, indication}: ProductPageProps){
     return (
         <S.Wrapper>
-            <h1>{name}</h1>
+            <ProductHeader name={name} whatIsItFor={indication}/>
         </S.Wrapper>
     )
 }
@@ -30,7 +32,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
             product: getProduct(slug: "${params.slug}", zipcode: "74630280") {
             id: productId
             name: productName
-            description
+            indication: productIndication
             variations: variants {
                 id
                 name
@@ -49,6 +51,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     return {
         props: {
             name: data.product.name,
+            indication: data.product.indication
         },
         revalidate: 60
     }
