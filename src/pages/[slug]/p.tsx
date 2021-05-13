@@ -1,45 +1,49 @@
-import { GetStaticProps, GetStaticPaths } from 'next'
+import { GetStaticProps, GetStaticPaths } from 'next';
 
 import * as S from '@/styles/productPage';
 import api from '@/services/api';
 import ProductHeader from '@/components/Product/Header';
 
 interface ProductPageProps {
-    name: string;
-    indication: string;
-    substance: string;
-    factory: string;
-    hasPrescriptionType: boolean;
-    classification: string;
+  name: string;
+  indication: string;
+  substance: string;
+  factory: string;
+  hasPrescriptionType: boolean;
+  classification: string;
 }
 
-export default function ProductPage({ name, indication, factory, substance, hasPrescriptionType, classification }: ProductPageProps){
-    return (
-        <S.Wrapper>
-            <ProductHeader 
-            name={name} 
-            whatIsItFor={indication} 
-            factory={factory} 
-            substance={substance} 
-            hasPrescriptionType={hasPrescriptionType}
-            classification={classification}
-            />
-            
-        </S.Wrapper>
-    )
+export default function ProductPage({
+  name,
+  indication,
+  factory,
+  substance,
+  hasPrescriptionType,
+  classification,
+}: ProductPageProps) {
+  return (
+    <S.Wrapper>
+      <ProductHeader
+        name={name}
+        whatIsItFor={indication}
+        factory={factory}
+        substance={substance}
+        hasPrescriptionType={hasPrescriptionType}
+        classification={classification}
+      />
+    </S.Wrapper>
+  );
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    return {
-        paths: [
-            { params: { slug: 'daxas' } }
-        ],
-        fallback: false,
-    }
+  return {
+    paths: [{ params: { slug: 'daxas' } }],
+    fallback: false,
+  };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-    const query = `
+  const query = `
         {
             product: getProduct(slug: "${params.slug}", zipcode: "74630280") {
                 id: productId
@@ -62,19 +66,21 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
                 }
             }
         }
-    `
+    `;
 
-    const { data: { data } } = await api.post('/graphql', { query });
+  const {
+    data: { data },
+  } = await api.post('/graphql', { query });
 
-    return {
-        props: {
-            name: data.product.name,
-            indication: data.product.indication,
-            factory: data.product.factory,
-            substance: data.product.substance,
-            hasPrescriptionType: data.product.hasPrescriptionType,
-            classification: data.product.productClassification
-        },
-        revalidate: 60
-    }
-}
+  return {
+    props: {
+      name: data.product.name,
+      indication: data.product.indication,
+      factory: data.product.factory,
+      substance: data.product.substance,
+      hasPrescriptionType: data.product.hasPrescriptionType,
+      classification: data.product.productClassification,
+    },
+    revalidate: 60,
+  };
+};

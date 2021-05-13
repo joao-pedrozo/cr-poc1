@@ -1,16 +1,15 @@
 import { ThemeProvider } from 'styled-components';
 
-import GlobalStyles from '../styles/global'
-import theme from '../styles/theme'
+import GlobalStyles from '../styles/global';
+import theme from '../styles/theme';
 
 function MyApp({ Component, pageProps }) {
   return (
-   <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Component {...pageProps} />
-   </ThemeProvider>
-  
-  )
+    </ThemeProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;
