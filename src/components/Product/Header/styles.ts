@@ -10,6 +10,7 @@ export const HeaderLeftSide = styled.div``;
 
 export const HeaderBottom = styled.div`
     display: flex;
+    justify-content: space-between;
 `;
 
 export const WhatIsItForWrapper = styled.div`
@@ -30,4 +31,9 @@ export const HeaderMiddle = styled.div`
 export const HeaderMiddleSection = styled.div`
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
+
+    &:last-child {
+        margin-bottom: 0;
+    } 
 `;

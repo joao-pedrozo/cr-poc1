@@ -7,6 +7,8 @@ interface ProductHeader {
     whatIsItFor: string;
     substance: string;
     factory: string;
+    hasPrescriptionType: boolean;
+    classification: string;
 } 
 
 const ProductHeader = ({ name, whatIsItFor, substance, factory }: ProductHeader) => {
@@ -28,6 +30,11 @@ const ProductHeader = ({ name, whatIsItFor, substance, factory }: ProductHeader)
                     <S.HeaderMiddleSection>
                         <Image src="/assets/icons/formula.icon.svg" width={15} height={15} />
                         <span>{substance}</span>
+                    </S.HeaderMiddleSection>
+
+                    <S.HeaderMiddleSection>
+                        <Image src="/assets/icons/prescription.icon.svg" width={15} height={15} />
+                        <span>Prescrição</span>
                     </S.HeaderMiddleSection>
                 </S.HeaderMiddle>
             </S.HeaderBottom>

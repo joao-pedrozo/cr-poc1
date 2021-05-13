@@ -9,12 +9,22 @@ interface ProductPageProps {
     indication: string;
     substance: string;
     factory: string;
+    hasPrescriptionType: boolean;
+    classification: string;
 }
 
-export default function ProductPage({ name, indication, factory, substance }: ProductPageProps){
+export default function ProductPage({ name, indication, factory, substance, hasPrescriptionType, classification }: ProductPageProps){
     return (
         <S.Wrapper>
-            <ProductHeader name={name} whatIsItFor={indication} factory={factory} substance={substance}/>
+            <ProductHeader 
+            name={name} 
+            whatIsItFor={indication} 
+            factory={factory} 
+            substance={substance} 
+            hasPrescriptionType={hasPrescriptionType}
+            classification={classification}
+            />
+            
         </S.Wrapper>
     )
 }
@@ -38,6 +48,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
                 factory: factoryName
                 substance: substanceName
                 prescriptionTypeName
+                hasPrescriptionType
+                productClassification
                 variations: variants {
                   id
                   name
@@ -60,6 +72,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
             indication: data.product.indication,
             factory: data.product.factory,
             substance: data.product.substance,
+            hasPrescriptionType: data.product.hasPrescriptionType,
+            classification: data.product.productClassification
         },
         revalidate: 60
     }
