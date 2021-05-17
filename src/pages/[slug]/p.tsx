@@ -1,8 +1,11 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
+import { useRouter } from 'next/router';
 
 import * as S from '@/styles/productPage';
 import api from '@/services/api';
-import ProductHeader from '@/components/Product/Header';
+import Header from '@/components/Product/Header';
+import OffersList from '@/components/Product/OffersList';
+import { useEffect, useState } from 'react';
 
 interface ProductPageProps {
   name: string;
@@ -21,9 +24,40 @@ export default function ProductPage({
   hasPrescriptionType,
   classification,
 }: ProductPageProps) {
+  const router = useRouter();
+  const [variationsWithOffers, setVariationsWithOffers] = useState([]);
+
+  useEffect(() => {
+    async function fetchVariationsWithOffers() {
+      const query = `
+       {
+           product: getProduct(slug: "${router.query.slug}", zipcode: "74630280") {
+               variations: variants {
+                 id
+                 name
+                 image
+                 offers {
+                   id
+                   storeName
+                   price
+                 }
+               }
+           }
+       }
+   `;
+
+      const {
+        data: { data },
+      } = await api.post('/graphql', { query });
+
+      setVariationsWithOffers(data.product.variations);
+    }
+    fetchVariationsWithOffers();
+  }, []);
+
   return (
     <S.Wrapper>
-      <ProductHeader
+      <Header
         name={name}
         whatIsItFor={indication}
         factory={factory}
@@ -31,6 +65,7 @@ export default function ProductPage({
         hasPrescriptionType={hasPrescriptionType}
         classification={classification}
       />
+      <OffersList variationsWithOffers={variationsWithOffers} productName={name} />
     </S.Wrapper>
   );
 }
