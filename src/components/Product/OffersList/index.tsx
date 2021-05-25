@@ -16,24 +16,31 @@ const OffersList = ({ variationsWithOffers, productName }: OffersListProps) => {
         {variationsWithOffers.map((variant, i) => (
           <>
             {i === 0 && (
-              <S.OfferItemWrapper key={variant.id}>
-                <S.OfferItemHeader>
+              <S.VariantItemWrapper key={variant.id}>
+                <S.VariantItemHeader>
                   <div className="classification" />
 
-                  <S.OfferItemHeaderDescription>
+                  <S.VariantItemHeaderDescription>
                     <Image width={64} height={60} src={variant.image} />
-                    <S.OfferItemHeaderDescriptionTitle>
+                    <S.VariantItemHeaderDescriptionTitle>
                       <span>
                         {productName}
                         <b> {variant.name}</b>
                       </span>
-                    </S.OfferItemHeaderDescriptionTitle>
-                  </S.OfferItemHeaderDescription>
-                </S.OfferItemHeader>
+                    </S.VariantItemHeaderDescriptionTitle>
+                  </S.VariantItemHeaderDescription>
+                </S.VariantItemHeader>
                 {variant.offers.map((offer) => (
-                  <span key={offer.id}>olá</span>
+                  <S.OfferCard key={offer.id}>
+                    <S.OfferCardImageWrapper>
+                      <Image width={80} height={40} src={offer.storeLogo} />
+                    </S.OfferCardImageWrapper>
+                    <S.OfferCardSelledByWrapper>
+                      <span>Vendido/Entregue por {offer.storeName}</span>
+                    </S.OfferCardSelledByWrapper>
+                  </S.OfferCard>
                 ))}
-              </S.OfferItemWrapper>
+              </S.VariantItemWrapper>
             )}
           </>
         ))}

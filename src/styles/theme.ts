@@ -7,6 +7,7 @@ export default {
   },
   colors: {
     textPrimary: '#333',
+    textSecondary: '#595959',
     'classification-generic': '#f9ad3d',
     'classification-beauty': '#ff4d8d',
     'classification-new': '#bfd72f',
@@ -17,5 +18,6 @@ export default {
     'classification-similar': '#d6003a',
     'classification-reference': '#009999',
     'classification-specific': '#2949e5',
+    borderColor: '#ccc',
   },
 };

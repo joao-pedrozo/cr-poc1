@@ -11,7 +11,7 @@ const GlobalStyles = createGlobalStyle`
         font-family: ${({ theme }) => theme.font.family}
     }
 
-    html, body, .__next {
+    html, body, #__next {
         height: 100%;
     }
 `;

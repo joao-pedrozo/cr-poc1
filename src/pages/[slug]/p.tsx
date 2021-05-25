@@ -40,6 +40,7 @@ export default function ProductPage({
                    id
                    storeName
                    price
+                   storeLogo
                  }
                }
            }
@@ -97,6 +98,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
                     id
                     storeName
                     price
+                    storeLogo
                   }
                 }
             }

@@ -17,11 +17,13 @@ const ProductHeader = ({ name, whatIsItFor, substance, factory }: ProductHeader)
       <h1>{name}</h1>
       <S.HeaderBottom>
         <S.HeaderLeftSide>
-          <S.WhatIsItForWrapper>
-            <span>
-              <b>Pra que serve:</b> {parseHtml(whatIsItFor)}
-            </span>
-          </S.WhatIsItForWrapper>
+          {whatIsItFor && (
+            <S.WhatIsItForWrapper>
+              <span>
+                <b>Pra que serve:</b> {parseHtml(whatIsItFor)}
+              </span>
+            </S.WhatIsItForWrapper>
+          )}
         </S.HeaderLeftSide>
         <S.HeaderMiddle>
           <S.HeaderMiddleSection>

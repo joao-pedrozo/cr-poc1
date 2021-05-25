@@ -7,25 +7,29 @@ export const Wrapper = styled.div`
   padding-left: 30px;
   padding-right: 30px;
   display: flex;
+  justify-content: center;
 `;
 
 export const OffersWrapper = styled.div`
   width: 100%;
   display: flex;
   margin-top: 20px;
+  padding-left: 45px;
+  padding-right: 45px;
+  max-width: 1170px;
 `;
 
-export const OfferItemWrapper = styled.div`
+export const VariantItemWrapper = styled.div`
   width: 100%;
 `;
 
-export const OfferItemHeader = styled.div`
+export const VariantItemHeader = styled.div`
   display: flex;
   background: #fff;
   border-radius: 4px;
   flex-direction: column;
-  border: 1px solid #ccc;
   margin-bottom: 8px;
+  border: 1px solid ${({ theme }) => theme.colors.borderColor};
 
   .classification {
     width: 100%;
@@ -36,15 +40,38 @@ export const OfferItemHeader = styled.div`
   }
 `;
 
-export const OfferItemHeaderDescription = styled.div`
+export const VariantItemHeaderDescription = styled.div`
   display: flex;
   padding: 8px;
 `;
 
-export const OfferItemHeaderDescriptionTitle = styled.div`
+export const VariantItemHeaderDescriptionTitle = styled.div`
   display: flex;
   align-items: center;
 
   font-size: 18px;
   color: ${({ theme }) => theme.colors.textPrimary};
+`;
+
+// Offers
+
+export const OfferCard = styled.div`
+  border: 1px solid ${({ theme }) => theme.colors.borderColor};
+  border-radius: 4px;
+  margin-bottom: 8px;
+  background-color: #fff;
+  height: 130px;
+  padding: 8px;
+  display: flex;
+`;
+
+export const OfferCardImageWrapper = styled.div`
+  max-width: 80px;
+  max-height: 40px;
+`;
+
+export const OfferCardSelledByWrapper = styled.div`
+  display: flex;
+  color: ${({ theme }) => theme.colors.textSecondary};
+  font-size: 12px;
 `;
