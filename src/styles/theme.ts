@@ -19,5 +19,6 @@ export default {
     'classification-reference': '#009999',
     'classification-specific': '#2949e5',
     borderColor: '#ccc',
+    textDanger: '#fa503f',
   },
 };

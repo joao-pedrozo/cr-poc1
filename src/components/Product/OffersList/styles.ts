@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
 export const OffersWrapper = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
   margin-top: 20px;
   padding-left: 45px;
   padding-right: 45px;
@@ -63,6 +64,26 @@ export const OfferCard = styled.div`
   height: 130px;
   padding: 8px;
   display: flex;
+  justify-content: space-between;
+`;
+
+export const OfferCardLeftSIde = styled.div`
+  display: flex;
+`;
+
+export const OfferCardRightSide = styled.div`
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid ${({ theme }) => theme.colors.borderColor};
+  width: 350px;
+  padding-left: 10px;
+  margin: 10px 0;
+
+  span {
+    font-size: 28px;
+    color: ${({ theme }) => theme.colors.textPrimary};
+    font-weight: 700;
+  }
 `;
 
 export const OfferCardImageWrapper = styled.div`

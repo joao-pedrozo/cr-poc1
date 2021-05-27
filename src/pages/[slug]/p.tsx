@@ -14,6 +14,7 @@ interface ProductPageProps {
   factory: string;
   hasPrescriptionType: boolean;
   classification: string;
+  variations: Array<any>;
 }
 
 export default function ProductPage({
@@ -23,6 +24,7 @@ export default function ProductPage({
   substance,
   hasPrescriptionType,
   classification,
+  variations,
 }: ProductPageProps) {
   const router = useRouter();
   const [variationsWithOffers, setVariationsWithOffers] = useState([]);
@@ -66,7 +68,11 @@ export default function ProductPage({
         hasPrescriptionType={hasPrescriptionType}
         classification={classification}
       />
-      <OffersList variationsWithOffers={variationsWithOffers} productName={name} />
+      <OffersList
+        variations={variations}
+        variationsWithOffers={variationsWithOffers}
+        productName={name}
+      />
     </S.Wrapper>
   );
 }
@@ -94,12 +100,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
                   id
                   name
                   image
-                  offers {
-                    id
-                    storeName
-                    price
-                    storeLogo
-                  }
                 }
             }
         }
@@ -117,6 +117,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       substance: data.product.substance,
       hasPrescriptionType: data.product.hasPrescriptionType,
       classification: data.product.productClassification,
+      variations: data.product.variations,
     },
     revalidate: 60,
   };
